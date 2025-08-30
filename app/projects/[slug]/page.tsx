@@ -1,6 +1,10 @@
-// No "use client" here!
 import { notFound } from 'next/navigation';
 import ClientProjectDetail from '@/app/projects/ClientProjectDetail';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Project Detail',
+};
 
 // Define your project data
 const projects = {
@@ -44,27 +48,25 @@ const projects = {
   },
 };
 
-// This function tells Next.js which paths to pre-render.
+// ✅ Tell Next.js which params to pre-render
 export async function generateStaticParams() {
-  return [
-    { slug: 'project-1' },
-    { slug: 'project-2' },
-    { slug: 'project-3' },
-  ];
+  return Object.keys(projects).map((slug) => ({ slug }));
 }
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
-  if (!params || !params.slug) {
-    notFound();
-  }
+// ✅ Correct type for Next.js 15 dynamic route
+type PageProps = {
+  params: { slug: string };
+};
+
+export default async function ProjectPage({ params }: PageProps) {
   const project = projects[params.slug as keyof typeof projects];
+
   if (!project) {
     notFound();
   }
 
   return (
     <main className="container mx-auto py-12 px-4">
-      {/* Pass project data to our Client Project Detail component */}
       <ClientProjectDetail project={project} />
     </main>
   );

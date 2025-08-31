@@ -55,17 +55,12 @@ export function generateStaticParams() {
 
 // ✅ Correct type for dynamic route
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 };
 
 export default function ProjectPage({ params }: Props) {
   const project = projects[params.slug as keyof typeof projects];
-
-  if (!project) {
-    notFound();
-  }
+  if (!project) notFound();
 
   return (
     <main className="container mx-auto py-12 px-4">

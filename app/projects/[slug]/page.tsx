@@ -60,7 +60,7 @@ interface PageProps {
   };
 }
 
-export default async function ProjectPage({ params }: PageProps) {
+export default function ProjectPage({ params }: PageProps) {
   const project = projects[params.slug as keyof typeof projects];
 
   if (!project) {

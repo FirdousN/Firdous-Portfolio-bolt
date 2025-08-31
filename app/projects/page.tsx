@@ -6,6 +6,14 @@ import { GithubIcon, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  live: string;
+}
+
 const projects = [
   {
     title: "Project One",
@@ -36,7 +44,7 @@ export default function ProjectsPage() {
       <h1 className="text-4xl font-bold mb-8 text-center">My Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,49 +52,52 @@ export default function ProjectsPage() {
             transition={{ duration: 0.5, delay: index * 0.2 }}
             className="cursor-pointer"
           >
-            <Card className="rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-transform duration-300">
-              <CardHeader className="p-6">
-                <CardTitle className="text-2xl font-bold">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="mt-2 text-muted-foreground">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-6 pb-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
-                    >
-                      <GithubIcon className="w-4 h-4" />
-                      GitHub
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
-                    >
-                      <Globe className="w-4 h-4" />
-                      Live Demo
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="block focus:outline-none focus:ring-2 focus:ring-primary">
+              <Card className="rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                <CardHeader className="p-6">
+                  <CardTitle className="text-2xl font-bold">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="mt-2 text-muted-foreground">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="px-6 pb-6">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1"
+                      >
+                        <GithubIcon className="w-4 h-4" />
+                        GitHub
+                      </a>
+                    </Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1"
+                      >
+                        <Globe className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+
           </motion.div>
         ))}
       </div>

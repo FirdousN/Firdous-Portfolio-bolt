@@ -1,49 +1,66 @@
-import { notFound } from "next/navigation";
-import ClientProjectDetail from "@/app/projects/ClientProjectDetail";
-import { Metadata, PageProps } from "next";
+import { notFound } from 'next/navigation';
+import ClientProjectDetail from '@/app/projects/ClientProjectDetail';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Project Detail",
+  title: 'Project Detail',
 };
 
 // Define your project data
 const projects = {
-  "project-1": {
-    title: "E-Commerce Platform",
-    description: "A full-featured online store...",
-    image: "https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg",
-    tags: ["Next.js", "TypeScript", "Stripe", "TailwindCSS", "PostgreSQL"],
-    github: "https://github.com/username/project-1",
-    demo: "https://project-1.demo",
-    features: ["User authentication", "Product catalog", "Shopping cart", "Secure payments", "Order tracking"],
+  'project-1': {
+    title: 'E-Commerce Platform',
+    description:
+      'A full-featured online store with cart and payment integration. Built with Next.js and Stripe for secure payments.',
+    image:
+      'https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg',
+    tags: ['Next.js', 'TypeScript', 'Stripe', 'TailwindCSS', 'PostgreSQL'],
+    github: 'https://github.com/username/project-1',
+    demo: 'https://project-1.demo',
+    features: [
+      'User authentication and authorization',
+      'Product catalog with search and filtering',
+      'Shopping cart with local storage',
+      'Secure payment processing with Stripe',
+      'Order management and tracking',
+    ],
   },
-  "project-2": {
-    title: "Social Media Dashboard",
-    description: "Analytics and management platform for social media accounts",
-    image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg",
-    tags: ["React", "Redux", "TailwindCSS"],
-    github: "https://github.com/username/project-2",
-    demo: "https://project-2.demo",
+  'project-2': {
+    title: 'Social Media Dashboard',
+    description:
+      'Analytics and management platform for social media accounts',
+    image:
+      'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg',
+    tags: ['React', 'Redux', 'TailwindCSS'],
+    github: 'https://github.com/username/project-2',
+    demo: 'https://project-2.demo',
     features: [],
   },
-  "project-3": {
-    title: "Task Management App",
-    description: "Collaborative task management with real-time updates",
-    image: "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg",
-    tags: ["Vue.js", "Firebase", "Sass"],
-    github: "https://github.com/username/project-3",
-    demo: "https://project-3.demo",
+  'project-3': {
+    title: 'Task Management App',
+    description: 'Collaborative task management with real-time updates',
+    image:
+      'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg',
+    tags: ['Vue.js', 'Firebase', 'Sass'],
+    github: 'https://github.com/username/project-3',
+    demo: 'https://project-3.demo',
     features: [],
   },
 };
 
-// ✅ Generate static params
-export function generateStaticParams() {
+// ✅ Tell Next.js which params to pre-render
+export async function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
 }
 
-// ✅ Correct typing for App Router
-export default function ProjectPage({ params }: PageProps<{ slug: string }>) {
+// ✅ Correct type for Next.js 15 dynamic route
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function ProjectPage({ params }: PageProps) {
   const project = projects[params.slug as keyof typeof projects];
 
   if (!project) {

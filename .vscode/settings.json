@@ -1,5 +1,8 @@
 {
     "files.associations": {
         "*.json.ts": "typescript"
-    }
+    },
+    "cSpell.words": [
+        "pexels"
+    ]
 }

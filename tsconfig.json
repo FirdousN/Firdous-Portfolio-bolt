@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -32,6 +33,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+     "types/**/*.d.ts",  
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],

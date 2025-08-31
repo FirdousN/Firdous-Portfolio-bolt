@@ -2,7 +2,8 @@
   "build": {
     "env": {
       "PNPM_INSTALL_OPTIONS": "--no-frozen-lockfile",
-      "NODE_ENV": "production"
+      "APP_ENV": "production"
     }
   }
 }
+

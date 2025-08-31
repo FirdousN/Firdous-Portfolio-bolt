@@ -48,18 +48,19 @@ const projects = {
   },
 };
 
-// ✅ Tell Next.js which params to pre-render
-export async function generateStaticParams() {
+// ✅ Match slugs to actual keys
+export function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
 }
 
-// ✅ Correct type for Next.js 15 dynamic route
+// ✅ Explicit type
 interface PageProps {
   params: {
     slug: string;
   };
 }
 
+// ✅ Keep this synchronous
 export default function ProjectPage({ params }: PageProps) {
   const project = projects[params.slug as keyof typeof projects];
 

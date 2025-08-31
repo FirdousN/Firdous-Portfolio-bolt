@@ -1,10 +1,11 @@
 {
+  "rootDirectory": "Firdous-Portfolio-bolt",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
   "build": {
     "env": {
-      "PNPM_INSTALL_OPTIONS": "--no-frozen-lockfile"
+      "NODE_ENV": "production"
     }
-  },
-  "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
-  "outputDirectory": ".next"
+  }
 }

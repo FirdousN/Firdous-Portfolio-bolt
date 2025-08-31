@@ -1,9 +1,10 @@
 {
   "build": {
     "env": {
-      "PNPM_INSTALL_OPTIONS": "--no-frozen-lockfile",
-      "APP_ENV": "production"
+      "PNPM_INSTALL_OPTIONS": "--no-frozen-lockfile"
     }
-  }
+  },
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install",
+  "outputDirectory": ".next"
 }
-
